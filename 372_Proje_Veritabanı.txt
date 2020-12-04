@@ -1,0 +1,72 @@
+CREATE TABLE sinavlar (
+    Sinav_ID INT NOT NULL AUTO_INCREMENT,
+    Baslangic VARCHAR(5) NOT NULL,
+    Bitis VARCHAR(5) NOT NULL,
+    Sinav_Tarihi DATE NOT NULL,
+    Agirligi INT,
+    Toplam_Sure INT,
+    Soru_Sayisi INT,
+    Soru_Dagilimi VARCHAR(10),
+    PRIMARY KEY (Sinav_ID)
+) ENGINE=INNODB;
+
+CREATE TABLE sorular(
+    Soru_ID INT NOT NULL AUTO_INCREMENT,
+    Turu VARCHAR(15),
+    Konusu VARCHAR(50),
+    Sorusu VARCHAR (1000),
+    Cevap_Suresi INT,
+    Sirasi INT,
+    Zorluk_Derecesi VARCHAR(10),
+    PRIMARY KEY (Soru_ID)	
+) ENGINE=INNODB;
+
+CREATE TABLE cevaplar(
+    Cevap_ID INT NOT NULL AUTO_INCREMENT,
+    Onaylama_Suresi INT,
+    Ilk_Etkilisim_Suresi INT,
+    Cevaplama_Suresi INT,
+    Cevap_Turu VARCHAR(20),
+    PRIMARY KEY (Cevap_ID)
+) ENGINE=INNODB;
+
+CREATE TABLE ogrenciler(
+    Ogrenci_ID VARCHAR(9),
+    Ad VARCHAR(20),
+    Soyad VARCHAR(20),
+    Not_Ortalamasi VARCHAR(5),
+    Odev_Ortalamasi VARCHAR(3),
+    Yoklama VARCHAR(10),
+    PRIMARY KEY (Ogrenci_ID)
+) ENGINE=INNODB;
+
+CREATE TABLE dersler(
+    Kodu VARCHAR (10),
+    Sinav_ID INT NOT NULL AUTO_INCREMENT,
+    Gecme_Notu VARCHAR(4),
+    Ogrenci_Listesi VARCHAR(100000),
+    PRIMARY KEY (Kodu),
+    FOREIGN KEY (Sinav_ID)
+        REFERENCES sinavlar(Sinav_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE sinava_giren_listesi (
+    Ogrenci_ID VARCHAR(9),
+    Sinav_ID INT NOT NULL,
+    Notu INT NOT NULL,
+    Soru_ID INT NOT NULL,
+    Cozum_ID INT NOT NULL,
+    FOREIGN KEY (Ogrenci_ID)
+        REFERENCES ogrenciler(Ogrenci_ID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sinav_ID)
+        REFERENCES sinavlar(Sinav_ID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Soru_ID)
+        REFERENCES sorular(Soru_ID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Cozum_ID)
+        REFERENCES cevaplar(Cevap_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
