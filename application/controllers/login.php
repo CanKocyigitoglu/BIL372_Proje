@@ -21,13 +21,22 @@ class login extends CI_Controller {
                 "email" => $validate[0]["email"],
                 "logged" => true
             );
+            $this->session->set_userdata(array("logged" => true));
         } else {
             $result = array(
                 "id" => -1,
                 "email" => null,
                 "logged" => false
             );
+            $this->session->set_userdata(array("logged" => false));
         }
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+
+    function logout() {
+        $this->session->sess_destroy();
+        $result = array("result" => true);
         header('Content-Type: application/json');
         echo json_encode($result);
     }
