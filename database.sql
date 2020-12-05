@@ -30,10 +30,44 @@ CREATE TABLE cevaplar(
     PRIMARY KEY (Cevap_ID)
 ) ENGINE=INNODB;
 
+CREATE TABLE bosluk_doldurma(
+    Cevap_ID INT NOT NULL,
+    Cevap VARCHAR(10000),
+    FOREIGN KEY (Cevap_ID)
+        REFERENCES cevaplar(Cevap_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE sesli(
+    Cevap_ID INT,
+    Cevap_Dosyasi VARCHAR(10000),
+    FOREIGN KEY (Cevap_ID)
+        REFERENCES cevaplar(Cevap_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE metin(
+    Cevap_ID INT,
+    Basilan_Tus_sayisi INT,
+    Karakter_sayisi INT,
+    FOREIGN KEY (Cevap_ID)
+        REFERENCES cevaplar(Cevap_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE secmeli(
+    Cevap_ID INT,
+    Tercihi VARCHAR(10000),
+    FOREIGN KEY (Cevap_ID)
+        REFERENCES cevaplar(Cevap_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
 CREATE TABLE ogrenciler(
     Ogrenci_ID VARCHAR(9),
     Ad VARCHAR(20),
     Soyad VARCHAR(20),
+    Sifre VARCHAR(100),
     Not_Ortalamasi VARCHAR(5),
     Odev_Ortalamasi VARCHAR(3),
     Yoklama VARCHAR(10),
@@ -48,6 +82,24 @@ CREATE TABLE dersler(
     PRIMARY KEY (Kodu),
     FOREIGN KEY (Sinav_ID)
         REFERENCES sinavlar(Sinav_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE Ogretim_Gorevlileri(
+    Kodu VARCHAR (10),
+    Ad VARCHAR(20),
+    Soyad VARCHAR(20),
+    PRIMARY KEY (Kodu)    
+) ENGINE=INNODB;
+
+CREATE TABLE OG_KAYITLI_DERS(
+	Ders_Kodu VARCHAR(10),
+    OG_Kodu VARCHAR(10),
+    FOREIGN KEY (Ders_Kodu)
+        REFERENCES dersler(Kodu)
+        ON DELETE CASCADE,
+    FOREIGN KEY (OG_Kodu)
+        REFERENCES Ogretim_Gorevlileri(Kodu)
         ON DELETE CASCADE
 ) ENGINE=INNODB;
 
@@ -70,3 +122,16 @@ CREATE TABLE sinava_giren_listesi (
         REFERENCES cevaplar(Cevap_ID)
         ON DELETE CASCADE
 ) ENGINE=INNODB;
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL
+) ENGINE=InnoDB
+
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
