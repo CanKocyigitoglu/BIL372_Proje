@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 export default class Login extends Component {
 
@@ -18,6 +19,13 @@ export default class Login extends Component {
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
+        axios.post('http://localhost/sign-in', this.state)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     render() {
