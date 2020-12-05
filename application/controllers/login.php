@@ -17,8 +17,8 @@ class login extends CI_Controller {
             ->get()->result_array();
         if (count($validate) == 1) {
             $result = array(
-                "id" => $validate["id"],
-                "email" => $validate["email"],
+                "id" => $validate[0]["id"],
+                "email" => $validate[0]["email"],
                 "logged" => true
             );
         } else {
