@@ -122,3 +122,16 @@ CREATE TABLE sinava_giren_listesi (
         REFERENCES cevaplar(Cevap_ID)
         ON DELETE CASCADE
 ) ENGINE=INNODB;
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL
+) ENGINE=InnoDB
+
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
