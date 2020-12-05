@@ -1,6 +1,5 @@
 <?php
 
-
 class Ogrenciler extends CI_Controller
 {
     function index() {
@@ -40,6 +39,4 @@ class Ogrenciler extends CI_Controller
     function delete() {
         $this->db->delete("Ogrenciler", array("Ogrenci_ID" => $this->input->post("Ogrenci_ID")));        
     }
-
-
 }
