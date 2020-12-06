@@ -16,8 +16,8 @@ export default class students extends Component {
                     <input type="text" className="form-control" placeholder="Enter finish time" />
                 </div>
 
-                <div className="Exam Date">
-                    <label>Email address</label>
+                <div className="form-group">
+                    <label>Exam Date</label>
                     <input type="email" className="form-control" placeholder="Enter exam Date" />
                 </div>
 
