@@ -19,7 +19,9 @@ export default class Login extends Component {
     submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
-        axios.post('http://localhost/sign-in', this.state)
+        axios
+        .post('https://jsonplaceholder.typicode.com/users', this.state)
+        //.post('http://192.168.1.35:3000/sign-in', this.state)
         .then(response => {
             console.log(response)
         })
@@ -51,10 +53,7 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button type="submit" onClick={this.onSubmit} className="btn btn-primary btn-block">Submit</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                </p>
+                <button type="submit" onClick={this.onSubmit} href="/home" className="btn btn-primary btn-block">Submit</button>
             </form>
         );
     }

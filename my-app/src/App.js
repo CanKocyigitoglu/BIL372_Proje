@@ -5,9 +5,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Login from "./components/login.component";
 import SignUp from "./components/signUp.component";
+import home from "./components/home";
+import students from "./components/students";
 
 function App() {
-  return (<Router>
+  return (
+  <Router>
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
@@ -22,6 +25,9 @@ function App() {
               <li className="nav-item">
                 <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/home"}>Home</Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -33,10 +39,13 @@ function App() {
             <Route exact path='/' component={Login} />
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />
+            <Route path="/home" component={home} />
+            <Route path="/students" component={students}></Route>
           </Switch>
         </div>
       </div>
-    </div></Router>
+    </div>
+    </Router>
   );
 }
 
