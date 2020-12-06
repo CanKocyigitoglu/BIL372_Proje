@@ -107,6 +107,17 @@ CREATE TABLE sinava_giren_listesi (
     Ogrenci_ID VARCHAR(9),
     Sinav_ID INT NOT NULL,
     Notu INT NOT NULL,
+    FOREIGN KEY (Ogrenci_ID)
+        REFERENCES ogrenciler(Ogrenci_ID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sinav_ID)
+        REFERENCES sinavlar(Sinav_ID)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE soru_cevap(
+    Ogrenci_ID varchar(9) NOT NULL,
+    Sinav_ID INT NOT NULL,
     Soru_ID INT NOT NULL,
     Cozum_ID INT NOT NULL,
     FOREIGN KEY (Ogrenci_ID)
