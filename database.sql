@@ -135,3 +135,19 @@ ALTER TABLE `login`
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+INSERT INTO `login` (`id`, `email`, `password`) VALUES
+(111101001, 'oguzergin@etu.edu.tr', '456'),
+(111101003, 'mehmettan@etu.edu.tr', '1234'),
+(111101007, 'tanselozyer@etu.edu.tr', '123');
+
+INSERT INTO `ogrenciler` (`Ogrenci_ID`, `Ad`, `Soyad`, `Sifre`, `Not_Ortalamasi`, `Odev_Ortalamasi`, `Yoklama`) VALUES
+('111111111', 'test', 'testoğlu', '789', '4.00', '100', '0'),
+('141101029', 'Osman', 'Çalışkan', '123', '2.50', '89', '5'),
+('161101066', 'Furkan', 'Dolaşık', '456', '2.50', '89', '3'),
+('161101073', 'Can', 'Koçyiğitoğlu', '1234', '2.50', '89', '2');
+
+INSERT INTO `ogretim_gorevlileri` (`Kodu`, `Ad`, `Soyad`) VALUES
+('111101001', 'Oğuz', 'Ergin'),
+('111101003', 'Mehmet', 'Tan'),
+('111101007', 'Tansel', 'Ozyer');
