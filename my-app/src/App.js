@@ -7,6 +7,8 @@ import Login from "./components/login.component";
 import SignUp from "./components/signUp.component";
 import home from "./components/home";
 import students from "./components/students";
+import exams from "./components/exams";
+import create_exam from "./components/create-exam";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
             <Route path="/sign-up" component={SignUp} />
             <Route path="/home" component={home} />
             <Route path="/students" component={students}></Route>
+            <Route path="/exams" component={exams}></Route>
+            <Route path="/create-exam" component={create_exam}></Route>
           </Switch>
         </div>
       </div>
