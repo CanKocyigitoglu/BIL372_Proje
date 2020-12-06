@@ -124,19 +124,13 @@ CREATE TABLE sinava_giren_listesi (
 ) ENGINE=INNODB;
 
 CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL
-) ENGINE=InnoDB
-
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-INSERT INTO `login` (`id`, `email`, `password`) VALUES
+  `password` varchar(32) NOT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+  
+ INSERT INTO `login` (`id`, `email`, `password`) VALUES
 (111101001, 'oguzergin@etu.edu.tr', '456'),
 (111101003, 'mehmettan@etu.edu.tr', '1234'),
 (111101007, 'tanselozyer@etu.edu.tr', '123');
