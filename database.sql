@@ -20,6 +20,17 @@ CREATE TABLE sorular(
     PRIMARY KEY (Soru_ID)	
 ) ENGINE=INNODB;
 
+CREATE TABLE sinav_soru(
+    Sinav_ID INT NOT NULL,
+    Soru_ID INT NOT NULL,
+    FOREIGN KEY (Sinav_ID)
+        REFERENCES sinavlar(Sinav_ID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Soru_ID)
+        REFERENCES sorular(Soru_ID)
+        ON DELETE CASCADE    
+) ENGINE=INNODB;
+
 CREATE TABLE cevaplar(
     Cevap_ID INT NOT NULL AUTO_INCREMENT,
     Onaylama_Suresi INT,
@@ -163,12 +174,30 @@ INSERT INTO `sinavlar` (`Sinav_ID`,`Sinav_Adi`, `Baslangic`, `Bitis`, `Sinav_Tar
 INSERT INTO `sorular` (`Soru_ID`, `Turu`, `Konusu`, `Sorusu`, `Cevap_Suresi`, `Sirasi`) VALUES
 (1, 'secmeli', 'mat', '10/2x3=?', 2, 1),
 (2, 'metin', 'mat', '6+2x3=?', 10, 2),
-(3, 'sesli', 'mat', '2-2x3=?', 5, 3),
+(3, 'secmeli', 'mat', '2-2x3=?', 5, 3),
 (4, 'metin', 'mat', '5-2x3=?', 20, 4),
 (5, 'secmeli', 'mat', '2x3+2=?', 12, 1),
 (6, 'metin', 'mat', '2x3/5=?', 21, 2),
 (7, 'bosluk_doldurma', 'mat', '4x2x3=?', 22, 3),
 (8, 'secmeli', 'mat', '2x33=?', 26, 4);
+
+INSERT INTO `sinav_soru` (`Sinav_ID`,`Soru_ID`) VALUES
+(1,1),
+(1,5),
+(1,8),
+(1,3),
+(2,2),
+(2,4),
+(2,6),
+(3,1),
+(3,4),
+(4,5),
+(4,6),
+(5,8),
+(5,3),
+(6,4),
+(6,6),
+(6,3);
 
 INSERT INTO `cevaplar` (`Cevap_ID`, `Onaylama_Suresi`, `Ilk_Etkilisim_Suresi`, `Cevaplama_Suresi`, `Cevap_Turu`) VALUES
 (1, 5, 10, 200, 'secmeli'),
