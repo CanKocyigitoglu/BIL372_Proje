@@ -24,33 +24,6 @@ class home extends CI_Controller {
             ->join("sorular", "sorular.Soru_ID = sinav_soru.Soru_ID")
             ->get()->result_array();
         $data["exam_name"] = $data["list"][0]["Sinav_Adi"];
-
-        foreach ($data["list"] as $question) {
-            $data["secenek"] = $this->db
-            ->select("Secenek")
-            ->from("soru_secenekler")
-            ->where('Soru_ID', $question["Soru_ID"])
-            ->get()->result_array();
-        };
-        //fall($data["secenek"]);
-        $data["answers"] = [];
-        foreach ($data["list"] as $question) {
-            foreach($data["secenek"] as $secenek){
-                foreach($secenek as $element){
-                    $condition = array('Sinav_ID' => $question["Sinav_ID"], 'Soru_ID' => $question["Soru_ID"], 'Cevap' => $element);
-                    $answers[$element] = $this->db
-                        ->select("*")
-                        ->from("soru_cevap")
-                        ->where($condition)
-                        ->join("ogrenciler","ogrenciler.Ogrenci_ID = soru_cevap.Ogrenci_ID")
-                        ->join("cevaplar", "cevaplar.Cevap_ID = soru_cevap.Cozum_ID")
-                        ->get()->result_array();
-
-                    array_push($data["answers"],$answers[$element]);    
-                }
-                
-            }                
-        };
         /*foreach($data["answers"] as $answer){
             foreach($answer as $item){
                 //$condition = array("Ogrenci_ID" => $item["Ogrenci_ID"], )
@@ -61,10 +34,37 @@ class home extends CI_Controller {
                 ->join("cevaplar","cevaplar.Cevap_ID = '"+$item["Cevap_ID"]+"' ");
             }
         }*/
-        fall($data["answers"]);
+        //fall($data["answers"]);
         //print_r($this->db->last_query());
         //fall($data["list"]);
         $this->load->view("exam_info", $data);
+    }
+
+    function question_info($Soru_ID) {
+        $data["secenek"] = $this->db
+            ->select("Secenek")
+            ->from("soru_secenekler")
+            ->where('Soru_ID', $Soru_ID)
+            ->get()->result_array();
+        
+        //fall($data["secenek"]);
+        $data["answers"] = [];
+        foreach($data["secenek"] as $secenek){
+            foreach($secenek as $element){
+                $condition = array('Soru_ID' => $Soru_ID, 'Cevap' => $element);
+                $answers[$element] = $this->db
+                    ->select("*")
+                    ->from("soru_cevap")
+                    ->where($condition)
+                    ->join("ogrenciler","ogrenciler.Ogrenci_ID = soru_cevap.Ogrenci_ID")
+                    ->join("cevaplar", "cevaplar.Cevap_ID = soru_cevap.Cozum_ID")
+                    ->get()->result_array();
+
+                array_push($data["answers"],$answers[$element]);    
+            }
+        }
+        fall($data["answers"]);
+        //$this->load->view("question_info", $data);
     }
 
 }
