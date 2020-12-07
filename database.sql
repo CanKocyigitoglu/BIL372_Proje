@@ -1,5 +1,6 @@
 CREATE TABLE sinavlar (
     Sinav_ID INT NOT NULL AUTO_INCREMENT,
+    Sinav_Adi varchar(10),
     Baslangic VARCHAR(5) NOT NULL,
     Bitis VARCHAR(5) NOT NULL,
     Sinav_Tarihi DATE NOT NULL,
@@ -151,13 +152,13 @@ INSERT INTO `ogretim_gorevlileri` (`Kodu`, `Ad`, `Soyad`) VALUES
 ('111101003', 'Mehmet', 'Tan'),
 ('111101007', 'Tansel', 'Ozyer');
 
-INSERT INTO `sinavlar` (`Sinav_ID`, `Baslangic`, `Bitis`, `Sinav_Tarihi`, `Agirligi`, `Toplam_Sure`, `Soru_Sayisi`) VALUES
-(1, '19.00', '21.00', '2020-09-09', 20, 120, 5 ),
-(2, '12.00', '14.00', '2020-09-10', 15, 120, 7 ),
-(3, '15.00', '16.00', '2020-09-21', 30, 60, 6 ),
-(4, '19.00', '22.00', '2020-09-03', 25, 180, 4 ),
-(5, '08.00', '10.00', '2020-09-12', 40, 120, 5 ),
-(6, '19.00', '21.00', '2020-09-09', 30, 120, 8 );
+INSERT INTO `sinavlar` (`Sinav_ID`,`Sinav_Adi`, `Baslangic`, `Bitis`, `Sinav_Tarihi`, `Agirligi`, `Toplam_Sure`, `Soru_Sayisi`) VALUES
+(1,'midterm1', '19.00', '21.00', '2020-09-09', 20, 120, 5 ),
+(2, 'midterm2','12.00', '14.00', '2020-09-10', 15, 120, 7 ),
+(3, 'final','15.00', '16.00', '2020-09-21', 30, 60, 6 ),
+(4, 'midterm1','19.00', '22.00', '2020-09-03', 25, 180, 4 ),
+(5, 'quiz1','08.00', '10.00', '2020-09-12', 40, 120, 5 ),
+(6, 'midterm2','19.00', '21.00', '2020-09-09', 30, 120, 8 );
 
 INSERT INTO `sorular` (`Soru_ID`, `Turu`, `Konusu`, `Sorusu`, `Cevap_Suresi`, `Sirasi`) VALUES
 (1, 'secmeli', 'mat', '10/2x3=?', 2, 1),
