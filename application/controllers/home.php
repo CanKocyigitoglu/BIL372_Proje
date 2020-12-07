@@ -32,20 +32,38 @@ class home extends CI_Controller {
             ->where('Soru_ID', $question["Soru_ID"])
             ->get()->result_array();
         };
-        $data["answers"] = [];
+        //fall($data["secenek"][0]);
+        //$data["answers"] = [];
         foreach ($data["list"] as $question) {
-            $condition = array('Sinav_ID' => $question["Sinav_ID"], 'Soru_ID' => $question["Soru_ID"]);
-            $answers = $this->db
-                ->select("*")
-                ->from("soru_cevap")
-                ->where($condition)
-                ->get()->result_array();
+            foreach($data["secenek"] as $secenek){
+                foreach($secenek as $element){
+                    $condition = array('Sinav_ID' => $question["Sinav_ID"], 'Soru_ID' => $question["Soru_ID"], 'Cevap' => $element);
+                    $answers[$element] = $this->db
+                        ->select("*")
+                        ->from("soru_cevap")
+                        ->where($condition)
+                        ->join("ogrenciler","ogrenciler.Ogrenci_ID = soru_cevap.Ogrenci_ID")
+                        ->join("cevaplar", "cevaplar.Cevap_ID = soru_cevap.Cozum_ID")
+                        ->get()->result_array();
 
-            array_push($data["answers"],$answers);                
+                    array_push($data["answers"],$answers[$element]);    
+                }
+                
+            }                
         };
-        print_r($data["answers"]);
+        /*foreach($data["answers"] as $answer){
+            foreach($answer as $item){
+                //$condition = array("Ogrenci_ID" => $item["Ogrenci_ID"], )
+                $element = $this->db
+                ->select("Ogrenci_ID, Ogrenci_Ad, Ogrenci_Soyad")
+                ->from("ogrenciler")
+                ->where("Ogrenci_ID", $item["Ogrenci_ID"])
+                ->join("cevaplar","cevaplar.Cevap_ID = '"+$item["Cevap_ID"]+"' ");
+            }
+        }*/
+        fall($data["answers"]);
         //print_r($this->db->last_query());
-        fall($data["list"]);
+        //fall($data["list"]);
         $this->load->view("exam_info", $data);
     }
 
