@@ -12,11 +12,17 @@ CREATE TABLE sinavlar (
 
 CREATE TABLE sorular(
     Soru_ID INT NOT NULL AUTO_INCREMENT,
-    Turu VARCHAR(15),
     Konusu VARCHAR(50),
     Sorusu VARCHAR (1000),
     Sirasi INT,
     PRIMARY KEY (Soru_ID)	
+) ENGINE=INNODB;
+
+CREATE TABLE soru_secenekler(
+    Soru_ID INT NOT NULL,
+    Secenek varchar(10),
+    FOREIGN KEY (Soru_ID)
+        REFERENCES sorular(Soru_ID)
 ) ENGINE=INNODB;
 
 CREATE TABLE sinav_soru(
@@ -35,33 +41,8 @@ CREATE TABLE cevaplar(
     Onaylama_Suresi INT,
     Ilk_Etkilisim_Suresi INT,
     Cevaplama_Suresi INT,
-    Cevap_Turu VARCHAR(20),
+    Cevap varchar(10),
     PRIMARY KEY (Cevap_ID)
-) ENGINE=INNODB;
-
-CREATE TABLE bosluk_doldurma(
-    Cevap_ID INT NOT NULL,
-    Cevap VARCHAR(10000),
-    FOREIGN KEY (Cevap_ID)
-        REFERENCES cevaplar(Cevap_ID)
-        ON DELETE CASCADE
-) ENGINE=INNODB;
-
-CREATE TABLE metin(
-    Cevap_ID INT,
-    Basilan_Tus_sayisi INT,
-    Karakter_sayisi INT,
-    FOREIGN KEY (Cevap_ID)
-        REFERENCES cevaplar(Cevap_ID)
-        ON DELETE CASCADE
-) ENGINE=INNODB;
-
-CREATE TABLE secmeli(
-    Cevap_ID INT,
-    Tercihi VARCHAR(10000),
-    FOREIGN KEY (Cevap_ID)
-        REFERENCES cevaplar(Cevap_ID)
-        ON DELETE CASCADE
 ) ENGINE=INNODB;
 
 CREATE TABLE ogrenciler(
@@ -170,15 +151,58 @@ INSERT INTO `sinavlar` (`Sinav_ID`,`Sinav_Adi`, `Baslangic`, `Bitis`, `Sinav_Tar
 (5, 'quiz1','08.00', '10.00', '2020-09-12', 40, 120, 5 ),
 (6, 'midterm2','19.00', '21.00', '2020-09-09', 30, 120, 8 );
 
-INSERT INTO `sorular` (`Soru_ID`, `Turu`, `Konusu`, `Sorusu`, `Sirasi`) VALUES
-(1, 'secmeli', 'mat', '10/2x3=?', 1),
-(2, 'metin', 'mat', '6+2x3=?', 2),
-(3, 'secmeli', 'mat', '2-2x3=?', 3),
-(4, 'metin', 'mat', '5-2x3=?', 4),
-(5, 'secmeli', 'mat', '2x3+2=?', 1),
-(6, 'metin', 'mat', '2x3/5=?', 2),
-(7, 'bosluk_doldurma', 'mat', '4x2x3=?', 3),
-(8, 'secmeli', 'mat', '2x33=?', 4);
+INSERT INTO `sorular` (`Soru_ID`, `Konusu`, `Sorusu`, `Sirasi`) VALUES
+(1, 'mat', '10/2x3=?', 1),
+(2,  'mat', '6+2x3=?', 2),
+(3,  'mat', '2-2x3=?', 3),
+(4,  'mat', '5-2x3=?', 4),
+(5,  'mat', '2x3+2=?', 1),
+(6, 'mat', '2x3/5=?', 2),
+(7, 'mat', '4x2x3=?', 3),
+(8, 'mat', '2x33=?', 4);
+
+INSERT INTO `soru_secenekler` (`Soru_ID`, `Secenek`) VALUES
+(1,"A"),
+(1,"B"),
+(1,"C"),
+(1,"D"),
+(1,"E"),
+(2,"A"),
+(2,"B"),
+(2,"C"),
+(2,"D"),
+(2,"E"),
+(3,"A"),
+(3,"B"),
+(3,"C"),
+(3,"D"),
+(3,"E"),
+(4,"A"),
+(4,"B"),
+(4,"C"),
+(4,"D"),
+(4,"E"),
+(5,"A"),
+(5,"B"),
+(5,"C"),
+(5,"D"),
+(5,"E"),
+(6,"A"),
+(6,"B"),
+(6,"C"),
+(6,"D"),
+(6,"E"),
+(7,"A"),
+(7,"B"),
+(7,"C"),
+(7,"D"),
+(7,"E"),
+(8,"A"),
+(8,"B"),
+(8,"C"),
+(8,"D"),
+(8,"E");
+
 
 INSERT INTO `sinav_soru` (`Sinav_ID`,`Soru_ID`) VALUES
 (1,1),
@@ -198,45 +222,23 @@ INSERT INTO `sinav_soru` (`Sinav_ID`,`Soru_ID`) VALUES
 (6,6),
 (6,3);
 
-INSERT INTO `cevaplar` (`Cevap_ID`, `Onaylama_Suresi`, `Ilk_Etkilisim_Suresi`, `Cevaplama_Suresi`, `Cevap_Turu`) VALUES
-(1, 5, 10, 200, 'secmeli'),
-(2, 50, 14, 205, 'metin'),
-(3, 400, 16, 210, 'bosluk_doldurma'),
-(4, 30, 17, 120, 'metin'),
-(5, 500, 115, 420, 'secmeli'),
-(6, 59, 15, 202, 'metin'),
-(7, 23, 107, 220, 'metin'),
-(8, 545, 104, 270, 'secmeli'),
-(9, 59, 102, 200, 'secmeli'),
-(10, 50, 14, 205, 'metin'),
-(11, 800, 162, 210, 'bosluk_doldurma'),
-(12, 305, 17, 120, 'metin'),
-(13, 502, 115, 420, 'secmeli'),
-(14, 590, 152, 202, 'metin'),
-(15, 231, 107, 220, 'metin'),
-(16, 549, 104, 270, 'secmeli');
-
-INSERT INTO `bosluk_doldurma` (`Cevap_ID`, `Cevap`) VALUES
-(3, 'bilgisayar mühendisliği güzel bir meslektir'),
-(11, 'yoksa burda ne işim var?');
-
-INSERT INTO `metin` (`Cevap_ID`, `Basilan_Tus_sayisi`, `Karakter_sayisi`) VALUES
-(2, 1000, 1000),
-(4, 1234, 1233),
-(6, 14234, 12321),
-(7, 56734, 45665),
-(10, 4353, 5656),
-(12, 2344, 4545),
-(14, 545, 500),
-(15, 345, 344);
-
-INSERT INTO `secmeli` (`Cevap_ID`, `Tercihi`) VALUES
-(1, 'A'),
-(13, 'A'),
-(5, 'B'),
-(16, 'C'),
-(8, 'D'),
-(9, 'E');
+INSERT INTO `cevaplar` (`Cevap_ID`, `Onaylama_Suresi`, `Ilk_Etkilisim_Suresi`, `Cevaplama_Suresi`, `Cevap`) VALUES
+(1, 5, 10, 200, "A"),
+(2, 50, 14, 205,"B"),
+(3, 400, 16, 210,"A" ),
+(4, 30, 17, 120, "C" ),
+(5, 500, 115, 420,"C"),
+(6, 59, 15, 202,"D"),
+(7, 23, 107, 220,"A"),
+(8, 545, 104, 270,"B"),
+(9, 59, 102, 200, "E"),
+(10, 50, 14, 205, "E"),
+(11, 800, 162, 210, "A"),
+(12, 305, 17, 120,"B"),
+(13, 502, 115, 420,"C"),
+(14, 590, 152, 202, "D"),
+(15, 231, 107, 220, "E"),
+(16, 549, 104, 270, "C");
 
 INSERT INTO `ogrenciler` (`Ogrenci_ID`, `Ad`, `Soyad`, `Sifre`, `Not_Ortalamasi`, `Odev_Ortalamasi`, `Yoklama`) VALUES
 ('111111111', 'test', 'testoğlu', '789', '4.00', '100', '0'),
