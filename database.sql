@@ -49,7 +49,6 @@ CREATE TABLE ogrenciler(
     Ogrenci_ID VARCHAR(9),
     Ad VARCHAR(20),
     Soyad VARCHAR(20),
-    Sifre VARCHAR(100),
     Not_Ortalamasi VARCHAR(5),
     Odev_Ortalamasi VARCHAR(3),
     Yoklama VARCHAR(10),
@@ -267,11 +266,11 @@ INSERT INTO `cevaplar` (`Cevap_ID`, `Onaylama_Suresi`, `Ilk_Etkilisim_Suresi`, `
 (35, 549, 104, 270, "C"),
 (36, 549, 104, 270, "C");
 
-INSERT INTO `ogrenciler` (`Ogrenci_ID`, `Ad`, `Soyad`, `Sifre`, `Not_Ortalamasi`, `Odev_Ortalamasi`, `Yoklama`) VALUES
-('111111111', 'test', 'testoğlu', '789', '4.00', '100', '0'),
-('141101029', 'Osman', 'Çalışkan', '123', '2.50', '89', '5'),
-('161101066', 'Furkan', 'Dolaşık', '456', '2.50', '89', '3'),
-('161101073', 'Can', 'Koçyiğitoğlu', '1234', '2.50', '89', '2');
+INSERT INTO `ogrenciler` (`Ogrenci_ID`, `Ad`, `Soyad`, `Not_Ortalamasi`, `Odev_Ortalamasi`, `Yoklama`) VALUES
+('111111111', 'test', 'testoğlu', '4.00', '100', '0'),
+('141101029', 'Osman', 'Çalışkan', '2.50', '89', '5'),
+('161101066', 'Furkan', 'Dolaşık', '2.50', '89', '3'),
+('161101073', 'Can', 'Koçyiğitoğlu', '2.50', '89', '2');
 
 INSERT INTO `dersler` (`Kodu`, `Sinav_ID`, `Gecme_Notu`) VALUES
 ('Bil 372', 1, '20');
