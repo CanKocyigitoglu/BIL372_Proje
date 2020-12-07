@@ -32,8 +32,8 @@ class home extends CI_Controller {
             ->where('Soru_ID', $question["Soru_ID"])
             ->get()->result_array();
         };
-        //fall($data["secenek"][0]);
-        //$data["answers"] = [];
+        //fall($data["secenek"]);
+        $data["answers"] = [];
         foreach ($data["list"] as $question) {
             foreach($data["secenek"] as $secenek){
                 foreach($secenek as $element){
