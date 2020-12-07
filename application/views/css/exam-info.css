@@ -11,3 +11,22 @@
   .mb-0 > a[aria-expanded="true"]:after {
     content: "\f077"; /* fa-chevron-up */
   }
+  body{
+    background-color: 22223b;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+.jumbotron{
+    background-color: f2e9e4 !important;
+}
+.header{
+    color: 006466;
+}
+.card{
+    background-color: f2e9e4;
+}
+.white{
+    color: green !important;
+}
