@@ -15,7 +15,6 @@ CREATE TABLE sorular(
     Turu VARCHAR(15),
     Konusu VARCHAR(50),
     Sorusu VARCHAR (1000),
-    Cevap_Suresi INT,
     Sirasi INT,
     PRIMARY KEY (Soru_ID)	
 ) ENGINE=INNODB;
@@ -171,15 +170,15 @@ INSERT INTO `sinavlar` (`Sinav_ID`,`Sinav_Adi`, `Baslangic`, `Bitis`, `Sinav_Tar
 (5, 'quiz1','08.00', '10.00', '2020-09-12', 40, 120, 5 ),
 (6, 'midterm2','19.00', '21.00', '2020-09-09', 30, 120, 8 );
 
-INSERT INTO `sorular` (`Soru_ID`, `Turu`, `Konusu`, `Sorusu`, `Cevap_Suresi`, `Sirasi`) VALUES
-(1, 'secmeli', 'mat', '10/2x3=?', 2, 1),
-(2, 'metin', 'mat', '6+2x3=?', 10, 2),
-(3, 'secmeli', 'mat', '2-2x3=?', 5, 3),
-(4, 'metin', 'mat', '5-2x3=?', 20, 4),
-(5, 'secmeli', 'mat', '2x3+2=?', 12, 1),
-(6, 'metin', 'mat', '2x3/5=?', 21, 2),
-(7, 'bosluk_doldurma', 'mat', '4x2x3=?', 22, 3),
-(8, 'secmeli', 'mat', '2x33=?', 26, 4);
+INSERT INTO `sorular` (`Soru_ID`, `Turu`, `Konusu`, `Sorusu`, `Sirasi`) VALUES
+(1, 'secmeli', 'mat', '10/2x3=?', 1),
+(2, 'metin', 'mat', '6+2x3=?', 2),
+(3, 'secmeli', 'mat', '2-2x3=?', 3),
+(4, 'metin', 'mat', '5-2x3=?', 4),
+(5, 'secmeli', 'mat', '2x3+2=?', 1),
+(6, 'metin', 'mat', '2x3/5=?', 2),
+(7, 'bosluk_doldurma', 'mat', '4x2x3=?', 3),
+(8, 'secmeli', 'mat', '2x33=?', 4);
 
 INSERT INTO `sinav_soru` (`Sinav_ID`,`Soru_ID`) VALUES
 (1,1),
