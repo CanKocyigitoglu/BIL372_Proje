@@ -26,16 +26,26 @@ class home extends CI_Controller {
         $data["exam_name"] = $data["list"][0]["Sinav_Adi"];
 
         foreach ($data["list"] as $question) {
-            $answers = $this->db
-                ->select("")
-                ->from("soru_cevap")
-                ->where("soru_cevap.Sinav_ID", $question["Sinav_ID"])
-                ->where("soru_cevap.Soru_ID",  $question["Soru_ID"])
-                ->get()->result_array();
+            $data["secenek"] = $this->db
+            ->select("Secenek")
+            ->from("soru_secenekler")
+            ->where('Soru_ID', $question["Soru_ID"])
+            ->get()->result_array();
         };
+        $data["answers"] = [];
+        foreach ($data["list"] as $question) {
+            $condition = array('Sinav_ID' => $question["Sinav_ID"], 'Soru_ID' => $question["Soru_ID"]);
+            $answers = $this->db
+                ->select("*")
+                ->from("soru_cevap")
+                ->where($condition)
+                ->get()->result_array();
 
+            array_push($data["answers"],$answers);                
+        };
+        print_r($data["answers"]);
         //print_r($this->db->last_query());
-        //fall($data["list"]);
+        fall($data["list"]);
         $this->load->view("exam_info", $data);
     }
 
