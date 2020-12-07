@@ -7,6 +7,10 @@ class login extends CI_Controller {
         parent::__construct();
     }
 
+    function index() {
+        $this->load->view("login.html");
+    }
+
     function auth() {
         $posted = $this->input->post();
         $validate = $this->db
@@ -16,29 +20,25 @@ class login extends CI_Controller {
             ->where("password", $posted["password"])
             ->get()->result_array();
         if (count($validate) == 1) {
-            $result = array(
+            $this->session->set_userdata(array(
                 "id" => $validate[0]["id"],
                 "email" => $validate[0]["email"],
                 "logged" => true
-            );
-            $this->session->set_userdata(array("logged" => true));
+            ));
+            redirect(base_url("home"));
         } else {
-            $result = array(
+            $this->session->set_userdata(array(
                 "id" => -1,
                 "email" => null,
                 "logged" => false
-            );
-            $this->session->set_userdata(array("logged" => false));
+            ));
+            redirect(base_url("login"));
         }
-        header('Content-Type: application/json');
-        echo json_encode($result);
     }
 
     function logout() {
         $this->session->sess_destroy();
-        $result = array("result" => true);
-        header('Content-Type: application/json');
-        echo json_encode($result);
+        redirect(base_url("login"));
     }
 
     function register() {
@@ -47,17 +47,16 @@ class login extends CI_Controller {
             "email" => $posted["email"],
             "password" => $posted["password"]
         );
-        if ($this->db->insert('login', $insert)){
-            $result = array(
-                "result" => true
-            );
-        } else {
-            $result = array(
-                "result" => false
-            );
-        }
+        $this->db->insert('login', $insert);
+        redirect(base_url("login"));
+    }
+
+    function logged() {
+        if ($this->session->userdata("logged")) $result = array("logged" => true);
+        else $result = array("logged" => false);
         header('Content-Type: application/json');
-        echo json_encode( $result );
+        echo json_encode($result);
+
     }
 
 }

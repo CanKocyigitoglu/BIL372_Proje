@@ -33,8 +33,24 @@
     </nav>
     <div id="accordion" class="container mt-5">
         <div class="jumbotron">
-            <h3 class="header">EXAM INFO</h3>
+            <h3 class="header">Exam: <?php echo $exam_name; ?></h3>
         </div>
+        <?php
+
+        $counter = 1;
+        foreach ($list as $question) {
+
+            print_r("<div class=\"card\">
+          <div class=\"card-header\" id=\"heading-1\">
+            <h5 class=\"mb-0\">
+              <a role=\"button\" data-toggle=\"collapse\" href=\"#collapse-1\" aria-expanded=\"true\" aria-controls=\"collapse-1\">
+                Question: ".$counter++.") ".$question['Sorusu']."
+              </a>
+            </h5>
+          </div>");
+        }
+
+        ?>
         <div class="card">
           <div class="card-header" id="heading-1">
             <h5 class="mb-0">
