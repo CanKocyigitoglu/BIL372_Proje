@@ -2,20 +2,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/input.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="./js/exams.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Document</title>
+    <style>
+    </style>
 </head>
 <body>
-    <div style="width: 40%;" class="border-bottom border-dark">
-        <div class="form-group">
-            <label class="text-dark" for="test">Test:</label>
-            <input type="text" name="test" id="test" class="form-control">
+    <nav class="navbar navbar-expand-sm   navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5500/application/views/exams.html">Exams <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5500/application/views/input.html">Create Question</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login/logout">Logout</a>
+              </li>
+          </ul>
         </div>
-    </div>
-    <div style="width: 40%;" class="border-bottom border-dark">
-        <div class="form-group">
-            <label class="text-dark" for="test">Test:</label>
-            <input type="text" name="test" id="test" class="form-control">
+    </nav>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Create Question</h3>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">  //action eklenecek
+                        <div class="input-group form-group">
+                            <input type="text" placeholder="Enter question type" class="form-control" name="question-type" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <input type="text" placeholder="Enter question subject" class="form-control" name="question-subject" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <input type="text" placeholder="Enter your question" class="form-control" name="question" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <input type="text" placeholder="Enter your question's order" class="form-control" name="question" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn float-right login_btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        <a href="http://127.0.0.1:5500/application/views/exams.html">Go to exam page</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
