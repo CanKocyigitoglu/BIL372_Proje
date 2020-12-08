@@ -4,11 +4,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/exam-info.css">
+    <link rel="stylesheet" href="exam-info.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .mb-0 > a {
+            display: block;
+            position: relative;
+        }
+        .mb-0 > a:after {
+            content: "\f078"; /* fa-chevron-down */
+            font-family: 'FontAwesome';
+            position: absolute;
+            right: 0;
+        }
+        .mb-0 > a[aria-expanded="true"]:after {
+            content: "\f077"; /* fa-chevron-up */
+        }
+        body{
+            background-color: 22223b;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
+        .jumbotron{
+            background-color: f2e9e4 !important;
+        }
+        .header{
+            color: 006466;
+        }
+        .card{
+            background-color: f2e9e4;
+        }
+        .white{
+            color: green !important;
+        }
+    </style>
   
 </head>
 <body>
