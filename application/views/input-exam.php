@@ -82,12 +82,6 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
 							<th>Exam Name</th>
 							<th>Start Time</th>
 							<th>Exam Date</th>
@@ -97,101 +91,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+                    <?php
+                    foreach ($exams as $exam) {
+                        print_r("<tr>
+							<td>".$exam['Sinav_Adi']."</td>
+							<td>".$exam['Baslangic']."</td>
+							<td>".$exam['Sinav_Tarihi']."</td>
+                            <td>%".$exam['Agirligi']."</td>
+                            <td>".$exam['Toplam_Sure']." dk</td>
+                            <td>".$exam['Soru_Sayisi']."</td>
 							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
+								<a href=\"/home/edit_exam/".$exam['Sinav_ID']."\" class=\"edit\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Edit\">&#xE254;</i></a>
+                                <a href=\"/home/delete_exam/".$exam['Sinav_ID']."\" class=\"delete\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Delete\">&#xE872;</i></a>
+                                <a href=\"/home/add_question_exam/".$exam['Sinav_ID']."\"><i class=\"material-icons\">&#xE147;</i></a>
 							</td>
-							<td>Name-1</td>
-							<td>Start-Time-1</td>
-							<td>Exam-Date-1</td>
-                            <td>%-1</td>
-                            <td>Total-Time-1</td>
-                            <td>Total-Question-Number-1</td>
-							<td>
-								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox2" name="options[]" value="1">
-									<label for="checkbox2"></label>
-								</span>
-							</td>
-							<td>Name-2</td>
-							<td>Start-Time-2</td>
-							<td>Exam-Date-2</td>
-                            <td>%-2</td>
-                            <td>Total-Time-2</td>
-                            <td>Total-Question-Number-2</td>
-							<td>
-								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox3" name="options[]" value="1">
-									<label for="checkbox3"></label>
-								</span>
-							</td>
-							<td>Name-3</td>
-							<td>Start-Time-3</td>
-							<td>Exam-Date-3</td>
-                            <td>%-3</td>
-                            <td>Total-Time-3</td>
-                            <td>Total-Question-Number-3</td>
-							<td>
-								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox4" name="options[]" value="1">
-									<label for="checkbox4"></label>
-								</span>
-							</td>
-							<td>Name-4</td>
-							<td>Start-Time-4</td>
-							<td>Exam-Date-4</td>
-                            <td>%-4</td>
-                            <td>Total-Time-4</td>
-                            <td>Total-Question-Number-4</td>
-							<td>
-								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
-							</td>
-						</tr>					
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox5" name="options[]" value="1">
-									<label for="checkbox5"></label>
-								</span>
-							</td>
-							<td>Name-5</td>
-							<td>Start-Time-5</td>
-							<td>Exam-Date-5</td>
-                            <td>%-5</td>
-                            <td>Total-Time-5</td>
-                            <td>Total-Question-Number-5</td>
-							<td>
-								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
-							</td>
-						</tr> 
+						</tr>");
+                    }
+                    ?>
 					</tbody>
 				</table>
 			</div>
@@ -200,7 +116,7 @@
 	<div id="addExamModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="" method="post"> //action eklenecek
+				<form action="/home/add_exam" method="post">
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Exam</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -208,27 +124,31 @@
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Exam Name</label>
-							<input type="text" class="form-control" placeholder="Enter exam name" required>
+							<input name="Sinav_Adi" type="text" class="form-control" placeholder="Enter exam name" required>
 						</div>
 						<div class="form-group">
 							<label>Start Time</label>
-							<input type="text" class="form-control" placeholder="Enter exam start time" required>
+							<input name="Baslangic" type="text" class="form-control" placeholder="Enter exam start time" required>
 						</div>
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <input name="Bitis" type="text" class="form-control" placeholder="Enter exam start time" required>
+                        </div>
 						<div class="form-group">
 							<label>Exam Date</label>
-							<textarea class="form-control" placeholder="Enter exam date" required></textarea>
+							<input name="Sinav_Tarihi" type="date" class="form-control" placeholder="Enter exam date" required>
 						</div>
 						<div class="form-group">
 							<label>%</label>
-							<input type="text" class="form-control" placeholder="Enter %" required>
+							<input name="Agirligi" type="number" class="form-control" placeholder="Enter %" required>
                         </div>		
                         <div class="form-group">
 							<label>Total Time (min)</label>
-							<input type="text" class="form-control" placeholder="Enter total exam time (min)" required>
+							<input name="Toplam_Sure" type="number" class="form-control" placeholder="Enter total exam time (min)" required>
                         </div>		
                         <div class="form-group">
 							<label>Total Question Number</label>
-							<input type="text" class="form-control" placeholder="Enter total question number" required>
+							<input name="Soru_Sayisi" type="text" class="form-control" placeholder="Enter total question number" required>
                         </div>					
 					</div>
 					<div class="modal-footer">

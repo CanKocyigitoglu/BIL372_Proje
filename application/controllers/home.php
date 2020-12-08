@@ -12,7 +12,7 @@ class home extends CI_Controller {
             ->select("*")
             ->from("sinavlar")
             ->get()->result_array();
-        $this->load->view("exams", $data);
+        $this->load->view("input-exam", $data);
     }
 
     function exam_info($exam_id) {
@@ -24,19 +24,6 @@ class home extends CI_Controller {
             ->join("sorular", "sorular.Soru_ID = sinav_soru.Soru_ID")
             ->get()->result_array();
         $data["exam_name"] = $data["list"][0]["Sinav_Adi"];
-        /*foreach($data["answers"] as $answer){
-            foreach($answer as $item){
-                //$condition = array("Ogrenci_ID" => $item["Ogrenci_ID"], )
-                $element = $this->db
-                ->select("Ogrenci_ID, Ogrenci_Ad, Ogrenci_Soyad")
-                ->from("ogrenciler")
-                ->where("Ogrenci_ID", $item["Ogrenci_ID"])
-                ->join("cevaplar","cevaplar.Cevap_ID = '"+$item["Cevap_ID"]+"' ");
-            }
-        }*/
-        //fall($data["answers"]);
-        //print_r($this->db->last_query());
-        //fall($data["list"]);
         $this->load->view("exam_info", $data);
     }
 
@@ -60,8 +47,6 @@ class home extends CI_Controller {
                 ->get()->result_array();
             array_push($data["list"], $secenek);
         }
-        
-        //fall($data);
         $this->load->view("choices", $data);
     }
 
@@ -107,13 +92,11 @@ class home extends CI_Controller {
             ->from("soru_secenekler")
             ->where("Soru_ID", $id)
             ->get()->result_array();
-        //fall($data);
         $this->load->view("input_edit", $data);
     }
 
     function edit_question_edit($id) {
         $posted = $this->input->post();
-        //fall($posted);
         $question = array(
             "Konusu"  => $posted["Konusu"],
             "Sorusu"  => $posted["Sorusu"],
@@ -127,7 +110,6 @@ class home extends CI_Controller {
         if ($posted["secenek_a"] != "") {
             $choices[] = array("Soru_ID" => $id, "Secenek" => "A");
             $this->db->delete("soru_secenekler", $choices[0]);
-            //fall($this->db->last_query());
             $this->db->insert("soru_secenekler", array("Soru_ID" => $id,"Secenek" => "A", "Icerik" => $posted["secenek_a"]));
         }
         if ($posted["secenek_b"] != "")  {
@@ -157,6 +139,62 @@ class home extends CI_Controller {
         $this->db->delete("soru_secenekler", array("Soru_ID" => $id));
         $this->db->delete("sorular", array("Soru_ID" => $id));
         redirect(base_url("home/questions"));
+    }
+
+    function add_exam() {
+        $this->db->insert("sinavlar", $this->input->post());
+        redirect(base_url("home"));
+
+    }
+
+    function edit_exam($id) {
+        $data["exams"] = $this->db
+            ->select("*")
+            ->from("sinavlar")
+            ->get()->result_array();
+
+        $data["examx"] = $this->db
+            ->select("*")
+            ->from("sinavlar")
+            ->where("Sinav_ID", $id)
+            ->get()->result_array()[0];
+
+        $this->load->view("exam_edit", $data);
+
+    }
+
+    function edit_exam_edit($id) {
+        $exam = $this->input->post();
+        $this->db->update("sinavlar", $exam, "Sinav_ID = ".$id);
+        redirect(base_url("home"));
+
+    }
+
+    function delete_exam($id) {
+        $this->db->delete("sinavlar", "Sinav_ID = ".$id);
+        redirect(base_url("home"));
+    }
+
+    function add_question_exam($exam_id) {
+        $data["questions"] = $this->db
+            ->select("*")
+            ->from("sorular")
+            ->get()->result_array();
+        $data["exam_id"] = $exam_id;
+        $this->load->view("questions", $data);
+    }
+
+    function add_question_exam_add($exam_id) {
+        $posted = $this->input->post();
+        $result = [];
+        foreach ($posted as $post) {
+            $result[] = array(
+                "Sinav_ID" => $exam_id,
+                "Soru_ID"  => $post
+            );
+        }
+        $this->db->insert_batch("sinav_soru", $result);
+        redirect(base_url("home"));
     }
 
 }

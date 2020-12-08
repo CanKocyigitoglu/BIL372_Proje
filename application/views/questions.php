@@ -16,36 +16,25 @@
     </script>
 </head>
 <body style="background-color: rgb(196, 202, 207);">
+<form action="/home/add_question_exam_add/<?php print_r($exam_id); ?>" method="post">
     <div class="container">
         <div class="row">
         <table id="example" class="table table-striped table-bordered" style="width:100%; margin-top: 2rem;">
             <thead>
                 <tr>
-                    <th><input type="checkbox" onclick="checkAll(this)"></th>
+                    <th>Choose</th>
                     <th>Question</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                      <td><input type="checkbox" name=""></td>
-                    <td>Question-1</td>
-                </tr>
-                <tr>
-                      <td><input type="checkbox" name=""></td>
-                    <td>Question-2</td>
-                </tr>
-                <tr>
-                      <td><input type="checkbox" name=""></td>
-                    <td>Question-3</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name=""></td>
-                    <td>Question-4</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name=""></td>
-                    <td>Question-5</td>
-                </tr>
+            <?php
+            foreach ($questions as $question) {
+                print_r("<tr>
+                      <td><input type=\"checkbox\" name=\"".$question['Soru_ID']."\" value=\"".$question['Soru_ID']."\"></td>
+                    <td>".$question['Konusu'].": ".$question['Sorusu']."</td>
+                </tr>");
+            }
+            ?>
             </tbody>
             <tfoot>
                 <tr></tr>
@@ -54,7 +43,8 @@
         </div>
     </div>
     <div>
-        <button style="margin-left: 76.9%;" class="btn btn-success">add</button>
+        <button style="margin-left: 76.9%;" class="btn btn-success" type="submit">add</button>
     </div>
+</form>
 </body>
 </html>

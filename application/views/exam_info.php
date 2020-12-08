@@ -20,10 +20,10 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:5500/application/views/exams.html">Exams <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="http://localhost/home">Exams <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:5500/application/views/input.html">Create Question</a>
+            <a class="nav-link" href="http://localhost/home/questions">Create Question</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/login/logout">Logout</a>
