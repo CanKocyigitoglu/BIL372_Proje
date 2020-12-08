@@ -94,7 +94,7 @@
                     <?php
                     foreach ($exams as $exam) {
                         print_r("<tr>
-							<td>".$exam['Sinav_Adi']."</td>
+							<td><a href=\"/home/exam_info/".$exam['Sinav_ID']."\">".$exam['Sinav_Adi']."<a></td>
 							<td>".$exam['Baslangic']."</td>
 							<td>".$exam['Sinav_Tarihi']."</td>
                             <td>%".$exam['Agirligi']."</td>
