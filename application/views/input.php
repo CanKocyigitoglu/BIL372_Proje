@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/input.css">
+    <link rel="stylesheet" href="../css/input.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="./js/exams.js"></script>
@@ -82,99 +82,29 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
-							<th>Question Type</th>
+							<th>Question ID</th>
 							<th>Question Subject</th>
 							<th>Question</th>
 							<th>Question Order</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+                    <?php
+
+                    foreach ($questions as $question) {
+                        print_r("<tr>
+							<td>".$question['Soru_ID']."</td>
+							<td>".$question['Konusu']."</td>
+							<td>".$question['Sorusu']."</td>
+							<td>".$question['Sirasi']."</td>
 							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
+								<a href=\"/home/edit_question/".$question['Soru_ID']."\" class=\"edit\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Edit\">&#xE254;</i></a>
+								<a href=\"/home/delete_question/".$question['Soru_ID']."\" class=\"delete\" ><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Delete\">&#xE872;</i></a>
 							</td>
-							<td>Type-1</td>
-							<td>Subject-1</td>
-							<td>Question-1</td>
-							<td>Order-1</td>
-							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox2" name="options[]" value="1">
-									<label for="checkbox2"></label>
-								</span>
-							</td>
-                            <td>Type-2</td>
-							<td>Subject-2</td>
-							<td>Question-2</td>
-							<td>Order-2</td>
-							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox3" name="options[]" value="1">
-									<label for="checkbox3"></label>
-								</span>
-							</td>
-							<td>Type-3</td>
-							<td>Subject-3</td>
-							<td>Question-3</td>
-							<td>Order-3</td>
-							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox4" name="options[]" value="1">
-									<label for="checkbox4"></label>
-								</span>
-							</td>
-							<td>Type-4</td>
-							<td>Subject-4</td>
-							<td>Question-4</td>
-							<td>Order-4</td>
-							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>					
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox5" name="options[]" value="1">
-									<label for="checkbox5"></label>
-								</span>
-							</td>
-							<td>Type-5</td>
-							<td>Subject-5</td>
-							<td>Question-5</td>
-							<td>Order-5</td>
-							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr> 
+						</tr>");
+                    }
+
+                    ?>
 					</tbody>
 				</table>
 			</div>
@@ -183,47 +113,43 @@
 	<div id="addQuestionModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="" method="post"> //action eklenecek
+				<form action="/home/add_question" method="post">
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Question</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
 						<div class="form-group">
-							<label>Type</label>
-							<input type="text" class="form-control" placeholder="Enter question type" required>
+							<label>Konusu</label>
+							<input type="text" name="Konusu" class="form-control" placeholder="Enter question type" required>
 						</div>
 						<div class="form-group">
-							<label>Subject</label>
-							<input type="text" class="form-control" placeholder="Enter question subject" required>
+							<label>Sorusu</label>
+							<input type="text" name="Sorusu" class="form-control" placeholder="Enter question subject" required>
 						</div>
 						<div class="form-group">
-							<label>Question</label>
-							<textarea class="form-control" placeholder="Enter question" required></textarea>
+							<label>Sirasi</label>
+							<input class="form-control" name="Sirasi" placeholder="Enter question" required></input>
 						</div>
-						<div class="form-group">
-							<label>Order</label>
-							<input type="text" class="form-control" placeholder="Enter question order" required>
+                        <div class="form-group">
+							<label>Seçenek A:</label>
+							<input type="text" name="secenek_a" class="form-control" placeholder="Enter only answer" required>
                         </div>		
                         <div class="form-group">
-							<label>Choice</label>
-							<input type="text" class="form-control" placeholder="Enter only one A/B/C/D/E" required>
+							<label>Seçenek B:</label>
+							<input type="text" name="secenek_b" class="form-control" placeholder="Enter only answer" required>
                         </div>		
                         <div class="form-group">
-							<label>Choice</label>
-							<input type="text" class="form-control" placeholder="Enter only one A/B/C/D/E" required>
+							<label>Seçenek C:</label>
+							<input type="text" name="secenek_c" class="form-control" placeholder="Enter only answer">
                         </div>		
                         <div class="form-group">
-							<label>Choice</label>
-							<input type="text" class="form-control" placeholder="Enter only one A/B/C/D/E" required>
+							<label>Seçenek D:</label>
+							<input type="text" name="secenek_d" class="form-control" placeholder="Enter only answer">
                         </div>		
                         <div class="form-group">
-							<label>Choice</label>
-							<input type="text" class="form-control" placeholder="Enter only one A/B/C/D/E" required>
-                        </div>		
-                        <div class="form-group">
-							<label>Choice</label>
-							<input type="text" class="form-control" placeholder="Enter only one A/B/C/D/E" required>
+							<label>Seçenek E:</label>
+							<input type="text" name="secenek_e" class="form-control" placeholder="Enter only answer">
 						</div>					
 					</div>
 					<div class="modal-footer">
