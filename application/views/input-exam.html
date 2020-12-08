@@ -18,7 +18,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Questions</title>
+    <title>Exams</title>
     <script>
         $(document).ready(function(){
             // Activate tooltip
@@ -74,8 +74,8 @@
 							<h2>Manage <b>Exams</b></h2>
 						</div>
 						<div class="col-xs-6">
-							<a href="#addQuestionModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Exam</span></a>
-							<a href="#deleteQuestionModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+							<a href="#addExamModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Exam</span></a>
+							<a href="#deleteExamModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
 					</div>
 				</div>
@@ -111,8 +111,9 @@
                             <td>Total-Time-1</td>
                             <td>Total-Question-Number-1</td>
 							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
 							</td>
 						</tr>
 						<tr>
@@ -129,8 +130,9 @@
                             <td>Total-Time-2</td>
                             <td>Total-Question-Number-2</td>
 							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
 							</td>
 						</tr>
 						<tr>
@@ -147,8 +149,9 @@
                             <td>Total-Time-3</td>
                             <td>Total-Question-Number-3</td>
 							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
 							</td>
 						</tr>
 						<tr>
@@ -165,8 +168,9 @@
                             <td>Total-Time-4</td>
                             <td>Total-Question-Number-4</td>
 							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
 							</td>
 						</tr>					
 						<tr>
@@ -183,8 +187,9 @@
                             <td>Total-Time-5</td>
                             <td>Total-Question-Number-5</td>
 							<td>
-								<a href="#editQuestionModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteQuestionModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editExamModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteExamModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="http://127.0.0.1:5500/application/views/questions.html"><i class="material-icons">&#xE147;</i></a>
 							</td>
 						</tr> 
 					</tbody>
@@ -192,7 +197,7 @@
 			</div>
 		</div>        
     </div>
-	<div id="addQuestionModal" class="modal fade">
+	<div id="addExamModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form action="" method="post"> //action eklenecek
@@ -234,7 +239,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="editQuestionModal" class="modal fade">
+	<div id="editExamModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
@@ -276,7 +281,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="deleteQuestionModal" class="modal fade">
+	<div id="deleteExamModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
