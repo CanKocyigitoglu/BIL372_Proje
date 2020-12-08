@@ -41,13 +41,23 @@ class login extends CI_Controller {
         redirect(base_url("login"));
     }
 
+    function register_page() {
+        $this->load->view("signup.html");
+    }
+
     function register() {
         $posted = $this->input->post();
-        $insert = array(
-            "email" => $posted["email"],
+        //fall($posted);
+        $this->db->insert('login', array(
+            "id"       => $posted["id"],
+            "email"    => $posted["email"],
             "password" => $posted["password"]
-        );
-        $this->db->insert('login', $insert);
+        ));
+        $this->db->insert('ogretim_gorevlileri', array(
+            "Kodu"  => $posted["id"],
+            "Ad"    => $posted["Ad"],
+            "Soyad" => $posted["Soyad"]
+        ));
         redirect(base_url("login"));
     }
 
